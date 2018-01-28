@@ -18,34 +18,39 @@ Installing
 
 * Get the code
 
-  git clone https://github.com/benclifford/msf.git
+  git clone https://github.com/benclifford/msf.rust
 
 * Build the code 
 
-  make
+  cargo build
 
-* Attach the output of the clock module to GPIO pin 25
+* Attach the output of the clock module to GPIO pin 12
 
 * Configure ntpd:
 
   Add these lines to /etc/ntpd.conf and restart ntpd:
 
-  server 127.127.28.2
-  fudge 127.127.28.2 refid MSF time1 0.018
+  server 127.127.28.3
+  fudge 127.127.28.3 refid MSF time1 0.018
 
   and restart ntpd:
   sudo /etc/init.d/ntp restart
 
-* Start msf:
+* Start msf.rust:
 
-  sudo ./start.sh
+  ./start.sh
 
 * Watch a few minutes for the output to appear.
 
-  You should see the symbol . appear every time the LED on the
-  clock module turns on or off, and after a minute or two if a decode
-  is successful, you should see a bunch of decoding information,
-  including a timestamp.
+  You should see a bunch of symbol information ticking on output
+  a few times a second. Over the course of a minute you should
+  see something like this:
+
+>-.1.9/0-.5.5/M.1.1.1.7/1+.1.1.1.7/1+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.2.8/2+.2.8/2+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.2.8/2+.2.8/2+.1.9/0+.2.8/2+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.1.9/0+.2.8/2+.1.9/0+.1.9/0+.2.8/2+.1.9/0+.1.9/0+.2.8/2+.2.8/2+.1.9/0+.1.9/0+.2.8/2+.1.9/0+.2.8/2+.3.7/3+.2.8/2+.3.7/3+.2.8/2+.2.8/2+.1.9/0+*qqppppppppppppppppprrppppppprrprpppppppprpprpprrpprprsrsrrp{MHDMY}
+Decode: 18-1-28 9:19
+N
+ 
+  showing pulses arriving, and then the final time being decoded.
 
 * Move the radio board/antenna around until you get a decent signal:
   there should be about one pulse per second visible in the onboard LED
@@ -56,5 +61,5 @@ Installing
   ntpq -p
 
   ...
-  *SHM(2)          .MSF.            0 l   64   64  317    0.000  -18.261   8.695
+  *SHM(3)          .MSF.            0 l   64   64  317    0.000  -18.261   8.695
   ...
