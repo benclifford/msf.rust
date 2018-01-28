@@ -7,4 +7,5 @@ echo 25 > /sys/class/gpio/export
 echo in > /sys/class/gpio/gpio25/direction
 echo both > /sys/class/gpio/gpio25/edge
 
-./shift
+cargo run
+
