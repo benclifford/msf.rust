@@ -4,7 +4,7 @@ msf
 Reads the time from an MSF radio receiver and feeds it into
 an NTP daemon running on a Raspberry Pi.
 
-Copyright Ben Clifford and CQX Limited, 2013-2017
+Copyright Ben Clifford and CQX Limited, 2013-2018
 
 Installing
 ===============
